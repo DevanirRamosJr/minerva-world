@@ -1,7 +1,5 @@
 from fastapi import FastAPI
-from mongo_db import MongoDB, task_helper
-from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from router.tasks import tasks_router
 
 app = FastAPI(
@@ -10,6 +8,19 @@ app = FastAPI(
     title="Minerva World"
 )
 
+origins = [
+    "http://localhost:8081",
+    "https://665cf5452a91430e81a24bc7--minerva-world.netlify.app",
+    "https://main--minerva-world.netlify.app"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/hello/{name}")
 async def say_hello(name: str):

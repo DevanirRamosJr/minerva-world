@@ -3,6 +3,7 @@ from mongo_db import MongoDB, task_helper
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from bson import ObjectId
+from typing import Dict
 
 tasks_router = APIRouter()
 db = MongoDB()
@@ -17,11 +18,11 @@ def get_all():
 
 
 @tasks_router.post("/create")
-def create(task):
-    task_dict = task.dict()
-    task_dict["_id"] = ObjectId()
-    collection.insert_one(task_dict)
-    return task_helper(task_dict)
+def create(task: Dict):
+    print(task)
+    task["_id"] = ObjectId()
+    collection.insert_one(task)
+    return task_helper(task)
 
 @tasks_router.put("/update/{id}")
 def update_task(id: str, task):
