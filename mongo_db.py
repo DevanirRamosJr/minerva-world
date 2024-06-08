@@ -23,3 +23,5 @@ class MongoDB:
         db = self.client.get_database(db_name)
         collection = db.get_collection(collection)
         return collection
+
+DATABASE = MongoDB()

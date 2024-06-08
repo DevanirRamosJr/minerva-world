@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from router.tasks import tasks_router
+from router.users import users_router
+from mongo_db import MongoDB
 
 app = FastAPI(
     docs_url=None,
@@ -22,9 +24,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
-
 app.include_router(tasks_router, prefix="/task")
-
+app.include_router(users_router, prefix="/user")

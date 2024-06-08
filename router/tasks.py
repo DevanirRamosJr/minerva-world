@@ -1,12 +1,12 @@
 from fastapi import APIRouter, HTTPException
-from mongo_db import MongoDB
+from mongo_db import DATABASE
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 from bson import ObjectId
 from models.Tasks import Task
 
 tasks_router = APIRouter()
-db = MongoDB()
+db = DATABASE
 collection = db.connect_collection(db_name="minerva-world", collection="tasks")
 
 @tasks_router.get("/get-all")
