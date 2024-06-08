@@ -23,17 +23,3 @@ class MongoDB:
         db = self.client.get_database(db_name)
         collection = db.get_collection(collection)
         return collection
-        # c = b.find({"title":"Title Goes Here"})
-        # print(a.tasks.find_one({"title":"Title Goes Here"}))
-        # for task in b.find():
-        #     print(task)
-
-def task_helper(task) -> dict:
-    return {
-        "id": str(task["_id"]),
-        "title": task["title"],
-        "description": task["description"],
-        "type": task["type"],
-        "is_completed": task["is_completed"],
-        "value": task["value"],
-    }
