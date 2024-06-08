@@ -10,7 +10,7 @@ app = FastAPI(
 
 origins = [
     "http://localhost:8081",
-    "https://665cf5452a91430e81a24bc7--minerva-world.netlify.app",
+    "https://minerva-world.netlify.app",
     "https://main--minerva-world.netlify.app"
 ]
 
